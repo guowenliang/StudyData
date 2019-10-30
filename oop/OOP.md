@@ -112,5 +112,5 @@
                 __age=19
     - Python的私有不是真私有，是一种称为name mangling的改名策略，
     可以使用对象名._classname_arrributename来访问 
-     
+    20191030
           
