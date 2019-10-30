@@ -69,3 +69,6 @@
 - conda list：显示anaconda安装的包
 - conda env list :显示anaconda的虚拟环境列表
 - -conda creat -m xxx python=3.7:创建python版本为3.7的虚拟环境，命名为xxx
+
+
+# 20191030在公司写下的
