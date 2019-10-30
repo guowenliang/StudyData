@@ -30,4 +30,4 @@ print(yueyue.name)
 print(yueyue.age)
 yueyue.doHomework()
 
-
+PythonStudent.__dict__
