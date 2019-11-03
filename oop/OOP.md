@@ -164,5 +164,230 @@
     - 构造函数如果本类中没有定义，则自动查找调用父类的构造函数
     - 如果本类有定义，则不再继续查找
 - 构造函数
-  76.11
+    - 是一类特殊的函数，类在实例化的时候第一次调用
+    - 继承中的构造函数，如果子类中有定义构造函数，调用子类中的，如果没有，调用父类。
+    
+          
+          # 继承中的构造函数  1.
+          class Animal():
+                pass
+                
+          class BuruAni():
+                pass
+          
+          class Dog(BuruAni):
+           #__init__ 就是构造函数
+           # 每次实例化 第一次被调用
+           #因为主要工作是进行初始化
+            def __init__(self):
+                print("It's a init !")
+           
+   
+                
+- super 
+     - super不是一个关键字，而是一个类
+     - super的作用是后去MRO（Method Resolution Order）列表中的第一个类
+     - super与父类直接没任何实质性关系，通过super可以调用父类
+     - super使用的两个方法，参见在构造函数中调用父类的构造函数
+            
+            
+            class A():
+                pass
+            class B(A):
+                pass
+            class C(B,A):
+                pass             
+            print(A.__mro__) #查询类的关系列表
+            print(B.__mro__)
+            
+- 单继承和多继承
+    - 单继承：每个类只能继承一个类
+    - 多继承：每个类允许继承多个类
+- 单继承和多继承的优缺点
+    - 单继承：
+        - 传承有序 逻辑清晰 语法简单 隐患少  
+        - 功能不能无限扩展，只能在当前唯一继承链中扩展
         
+    - 多继承：
+        - 优点：功能扩展方便
+        - 缺点：继承关系混乱
+        
+            
+            #多继承的例子
+             class  Fish():
+                def __init__(self,name):
+                    self.name = name 
+                def swim(self):
+                    print("swimming")
+             class Bird():
+                def __init__(self,name):
+                    self.name=name
+                def fly(self):
+                    print("flying")    
+             class Man():
+                def __init__(self,name):
+                    self.name=name
+                def work(self):
+                    print("working") 
+                     
+             class SuperMan(Man,Bird,Fish):  #按照顺序
+                def __init__(self,name):
+                    self.name=name
+                pass
+             s=SuperMan("Clark")
+             s.fly()
+             s.swim()       
+               
+          
+- 菱形继承和钻石继承的问题
+    - 多个子类继承自同一个父类，这些子类又被同一个类继承，于是继承关系图形形成一个菱形图谱
+    - [MRO](http://www.cnblogs.com/whatisfantasy/p/6046991.html)              
+    - 关于多继承的MRO
+        - MRO就是多继承中，用于保存继承顺序的一个列表
+        - python本身采用C3算法来进行多继承的菱形继承进行计算的结果
+        - MRO列表的计算原则：
+            - 子类永远在父类前面
+            - 如果多个父类，则根据继承语法中括号内类的书写顺序存放
+            - 如果多个类继承了同一个父类，孙子类中只会选取继承语法括号中第一个父类的父类
+- 构造函数
+    - 在对象进行实例化的时候，系统自动调用的一个函数叫构造函数，通常次函数用来对实例对象进行初始化
+    - 构造函数会按照MRO顺序往上查找
+    
+## 3.3 多态
+- 多态就是同一个对象在不同情况下有不同状态出现
+- 多态不是语法，是一种设计思想
+- 多态性：一种调用方式，不同的执行结果
+- 多态：同一事物的多种形态，动物分为人类、狗、猪
+
+- Mixin设计模式
+    - 主要采用多继承方式对类的功能进行扩展
+    - [Mixin概念](https://www.jianshu.com/p/a578bd2c42aa)
+- 我们使用多继承语法来实现Mixin
+- 使用Mixin实现多继承的时候注意：
+    - 首先他必须表示某一单一功能，而不是某个物品
+    - 职责必须单一，如果有多个功能，则写多个Mixin
+    - Mixin不能依赖子类实现
+    - 子类即使没有继承这个Mixin类，也能照样工作，只是缺少了某个功能
+- 优点：
+    - 使用Mixin可以再不对类进行任何修改的情况下，扩充功能
+    - 可以方便的组织和维护不同功能组件的划分
+    - 可以根据需要任意调整功能类的组合
+    - 可以避免创建很多新的类，导致类的继承混乱
+    
+# 4 类相关函数
+- issubclass:检测一个类是不是另一个的子类
+
+                class A（）：
+                    pass
+                class B(A):
+                    pass          
+                class C（）：
+                    PASS
+                print(issubclass(B,A))   
+- isinstance:检测一个对象是否是一个类的对象实例
+- hasattr:检测一个对象是否有成员属性  hasattr(对象名，属性名)               
+ - getattr
+ - setattr
+ - selattr:
+ - dir():获取成员列表
+ 
+ # 5. 类的成员描述符(属性)
+- 类的成员描述符是为了在类中对类的成员属性进行相关操作而创建的一种方式
+    - get：获取属性的操作
+    - set: 修改或者添加属性操作
+    - delete：删除属性的操作
+- 如果想使用类的成员描述符，有三种方法
+    - 使用类实现描述器
+    - 使用属性修饰符
+    - 使用property函数
+        - property函数很简单
+        - property(fget,gset,fdel,doc)
+    - 案例 
+                
+                #property案例
+                #定义一个Person类，具有name,age属性
+                #对于任意输入的姓名，我们希望用大写方式保存
+                #年龄，内部统一用整数保存
+                # x = property(fget,fset,fdel,doc)
+                class Person():
+                    #函数名称可以任意
+                    def fget(self):
+                        return self._name * 2
+                    
+                    def fset(self,name)
+                        self._name = name.upper() #大写 
+                    def fdel(self):
+                        self._name = "NoName" 
+                    
+                    name = property(fget,fset,fdel,"对name操作")
+                    
+                p1 = Person()
+                p1.name = "TuLing"
+                print(p1._name)    
+- 无论哪种修饰符都是为了对成员属性进行相应的控制
+    - 类的方式： 十二和多个类中的多个属性共用一个描述符
+    - property：使用当前类中使用，可以控制一个类中多个属性
+    - 属性修饰符：适用于当前类中使用，控制一个类中的一个属性
+# 6. 类的内置属性
+
+            __dict__:以字典的形式显示类的成员组成
+            __doc__:类的文本信息
+            __name__:获取类的名称
+            __bases__:获取某个类的所有父类，以元组的形式显示
+            
+             print(Person.__dict__)
+             print(Person.__doc__)  ##在类定义下边三引号
+             print(Person.__name__)
+             
+# 7. 类的常用魔术方法
+- 魔术方法就是不需要人为调用的方法，基本是在特定的时候自动触发
+- 魔术方法的统一特征，方法名被前后各两个下换线包裹
+- 操作类
+    - `__init__`:构造函数
+    - `__new__`:对象实例化方法，此函数较特殊，一般不需要使用
+    - `__call__`: 对象当做函数使用的时候，调用call函数
+    - `__str__`:对象被当做字符串的使用的时候
+    `__repr__`:返回字符串
+- 描述符相关
+    - `__set__`
+    - `__get__`
+    - `__delete__`
+- 属性相关操作
+    - `__getattr__`:访问一个不存在的属性时触发
+    - `__setattr__`:对成员属性进行设置的时候触发
+        - 参数：
+            - self用来获取当前对象，
+            - 被设置的属性名称，以字符串的形式出现
+            - 需要对属性名称设置的值
+        - 作用：进行属性设置的时候进行验证或者修改
+        - 注意：该方法中不能对属性直接进行赋值操作，否则会进入死循环
+- 运算分类相关魔术方法（类似于C++函数重载）
+    - `__gt__`:进行大于判断的时候触发的函数
+        - 参数：
+            - self
+            - 第二个参数是第二个对象
+            - 返回值可以是任意值，推荐返回布尔值
+            
+# 8 . 类和对象的三种方法
+- 实例方法
+    - 需要实例化对象才能使用的方法，使用过程中可能需要截止对象的其他对象的方法完成
+- 静态方法
+    - 不需要实例化，通过类直接访问
+    
+            @staticmethod
+            # 不需要参数
+            def say（）：
+                pass
+    
+- 类方法
+    - 不需要实例化
+    
+            @classmethod
+            def play(cls): #一般是cls
+                pass
+                
+- 三个方法的区别：：
+            
+        
+              
+                             
