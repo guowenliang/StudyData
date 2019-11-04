@@ -212,31 +212,31 @@
         - 优点：功能扩展方便
         - 缺点：继承关系混乱
         
-            
-            #多继承的例子
-             class  Fish():
-                def __init__(self,name):
-                    self.name = name 
-                def swim(self):
-                    print("swimming")
-             class Bird():
-                def __init__(self,name):
-                    self.name=name
-                def fly(self):
-                    print("flying")    
-             class Man():
-                def __init__(self,name):
-                    self.name=name
-                def work(self):
-                    print("working") 
-                     
-             class SuperMan(Man,Bird,Fish):  #按照顺序
-                def __init__(self,name):
-                    self.name=name
-                pass
-             s=SuperMan("Clark")
-             s.fly()
-             s.swim()       
+                                    
+             #多继承的例子
+                 class  Fish():
+                    def __init__(self,name):
+                        self.name = name 
+                    def swim(self):
+                        print("swimming")
+                 class Bird():
+                    def __init__(self,name):
+                        self.name=name
+                    def fly(self):
+                        print("flying")    
+                 class Man():
+                    def __init__(self,name):
+                        self.name=name
+                    def work(self):
+                        print("working") 
+                         
+                 class SuperMan(Man,Bird,Fish):  #按照顺序
+                    def __init__(self,name):
+                        self.name=name
+                    pass
+                 s=SuperMan("Clark")
+                 s.fly()
+                 s.swim()       
                
           
 - 菱形继承和钻石继承的问题
@@ -487,5 +487,5 @@
             t.__dict__
             
 
-                  
+   20191104               
                              
