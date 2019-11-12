@@ -53,10 +53,26 @@ for i in l3:
 
 #列表生成式
 l4 = [i for i in l3]
-print(l4)
+print([i for i in l3])
 
 
 import functools
 def myAdd(x , y):
     return x + y
 print(functools.reduce(myAdd,[1,2,3,4,5,6]))
+
+
+
+#filter函数案例
+#对于一个列表，对其进行过滤，偶数组成一个新数列
+
+#需要的过滤函数
+
+def isEven(a):
+    return a % 2 ==0
+
+l=[3,4,56,45,5,1,5,2,654,2,3,138,55,7,9,49]
+rst = filter(isEven,l)
+
+print([i for i in rst])
+
