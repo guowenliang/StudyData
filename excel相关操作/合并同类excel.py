@@ -19,7 +19,7 @@ for root,dirs,files in os.walk(pwd): #  # 第一个为起始路径，第二个�
 
 #将多个DataFrame合并为一个
 
-df = pd.concat(dfs)
+df = pd.concat(dfs,sort=0)  #sort = 0
 
 # 写入excel文件，不包含索引数据
 
