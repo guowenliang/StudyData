@@ -107,10 +107,10 @@ logging.log(logging.CRITICAL, "This is a critical log.")
                 Logger.debug():产生debug日志
                 Logger.exception（）：创建类似于logger.error的日志消息
                 Logger.log（）：获取一个明确的日志level参数类创建一个日志记录   
-      ```    
+      ```
     - 如何得到一个logger对象
         - 实例化
-        - logging.getLigger（）
+        - logging.getLogger（）
     - Handler
         - 把log发送到指定位置
         - 方法
