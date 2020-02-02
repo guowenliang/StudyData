@@ -94,8 +94,41 @@
     - 如果想完整精确表示ftp上的某个文件，需要上述三部分组合在一起
     - 案例06       
    
-        
+# Mail编程
 
+- 参考资料  【官网mail模块资料】
+
+## 邮件工作流程
+- MUA（MailUserAgent）邮件用户代理
+- MTA（MailTransferAgent）邮件传输代理
+- MDA（MailDelieveryAgent）邮件投递代理       
+- 流程
+    1. MUA->MTA，邮件已经在服务器上
+    2. qqMTA -> sina MDA，此时邮件在收件人邮箱
+    3. sina MDA->MUA，邮件下载到本地电脑
+- 编写程序
+    - 发送： MUA->MTA with SMTP:Simple Mail Transfer Protocal,包含MTA->MTA
+    - 接受：MDA->MUA with POP3 and IMAP：POSTOfficeProtocal v3 and InternetMessageAcceseeProtocal v4
+- 准备工作
+    - 注册邮箱
+    - 第三方邮箱需要特殊设置
+        - 进入设置中心
+        - 取得授权码
+- Python FOR mail
+    - SMTP负责发送邮箱
+        - 使用EMAIL模块构建邮件
+            - 纯文本邮件 案例v07
+            
+        - HTML格式邮件发送
+            - 准备代码作为内容
+            - 邮件subtype设为html
+            - 发送   
+            -- 案例v08
+        - 使用smtplib模块发送邮件
+        - 
+    
+    
+    - POP3协议接受邮件            
         
 
 

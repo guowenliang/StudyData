@@ -1,6 +1,4 @@
 #引入相应的包
-import time
-import os
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart

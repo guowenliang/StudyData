@@ -13,4 +13,5 @@ def sayHello():
 
 print("I am moudle p01!!")
 
-if "main"=__name__ :
+if __name__ == '__main__':
+    sayHello()
